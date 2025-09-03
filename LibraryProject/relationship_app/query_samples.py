@@ -1,24 +1,41 @@
-from .models import Author, Book, Library, Librarian
+from relationship_app.models import Author, Book, Library, Librarian
 
-def get_books_by_author(author_name):
+# 1. Query all books by a specific author
+def books_by_author(author_name):
     try:
         author = Author.objects.get(name=author_name)
-        return author.books.all()
+        books = author.books.all()
+        print(f"Books by {author_name}:")
+        for book in books:
+            print(f"- {book.title}")
     except Author.DoesNotExist:
-        return []
+        print(f"No author found with the name {author_name}")
 
-def get_books_in_library(library_name):
+
+# 2. List all books in a library
+def books_in_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        return library.books.all()
+        print(f"Books in {library_name}:")
+        for book in library.books.all():
+            print(f"- {book.title} by {book.author.name}")
     except Library.DoesNotExist:
-        return []
+        print(f"No library found with the name {library_name}")
 
-def get_librarian_for_library(library_name):
+
+# 3. Retrieve the librarian for a library
+def librarian_of_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
-        return library.librarian
+        librarian = library.librarian
+        print(f"Librarian of {library_name}: {librarian.name}")
     except Library.DoesNotExist:
-        return None
+        print(f"No library found with the name {library_name}")
     except Librarian.DoesNotExist:
-        return None
+        print(f"No librarian assigned to {library_name}")
+
+
+# Example usage (uncomment to run)
+# books_by_author("J.K. Rowling")
+# books_in_library("Central Library")
+# librarian_of_library("Central Library")
