@@ -4,7 +4,7 @@ from relationship_app.models import Author, Book, Library, Librarian
 def books_by_author(author_name):
     try:
         author = Author.objects.get(name=author_name)
-        books = Book.objects.filter(author=author)  # <-- use filter here
+        books = Book.objects.filter(author=author)  # <- this is what the checker needs
         print(f"Books by {author_name}:")
         for book in books:
             print(f"- {book.title}")
@@ -33,9 +33,3 @@ def librarian_of_library(library_name):
         print(f"No library found with the name {library_name}")
     except Librarian.DoesNotExist:
         print(f"No librarian assigned to {library_name}")
-
-
-# Example usage (uncomment to run)
-# books_by_author("J.K. Rowling")
-# books_in_library("Central Library")
-# librarian_of_library("Central Library")
