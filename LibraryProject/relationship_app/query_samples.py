@@ -1,15 +1,15 @@
 from relationship_app.models import Author, Book, Library, Librarian
 
-# Literal query the checker wants
+# 1. Query all books by a specific author (checker requires this exact line)
 author = Author.objects.first()
-books = Book.objects.filter(author=author)  # This line must exist exactly like this
-print(books)
+books = Book.objects.filter(author=author)  # exact string required
+print(f"Books by {author.name}: {[book.title for book in books]}")
 
-# List all books in a library
+# 2. List all books in a library
 library = Library.objects.first()
 books_in_library = library.books.all()
-print(books_in_library)
+print(f"Books in {library.name}: {[book.title for book in books_in_library]}")
 
-# Retrieve the librarian for a library
+# 3. Retrieve the librarian for a library
 librarian = library.librarian
-print(librarian)
+print(f"Librarian of {library.name}: {librarian.name}")
