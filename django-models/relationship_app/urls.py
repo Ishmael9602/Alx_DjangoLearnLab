@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import list_books, LibraryDetailView
+from . import views
 
 urlpatterns = [
-    path('books/', list_books, name='list_books'),
-    path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),
+    # Function-based view for listing all books
+    path('books/', views.list_books, name='list_books'),
+    
+    # Class-based view for library detail
+    path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='library_detail'),
 ]
