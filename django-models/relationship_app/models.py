@@ -18,7 +18,7 @@ class Author(models.Model):
 
 class Book(models.Model):
     """
-    Book model with a ForeignKey relationship to Author
+    Book model with a ForeignKey relationship to Author and custom permissions
     """
     title = models.CharField(max_length=200)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
@@ -28,6 +28,11 @@ class Book(models.Model):
     
     class Meta:
         ordering = ['title']
+        permissions = [
+            ('can_add_book', 'Can add book'),
+            ('can_change_book', 'Can change book'),
+            ('can_delete_book', 'Can delete book'),
+        ]
 
 
 class Library(models.Model):
