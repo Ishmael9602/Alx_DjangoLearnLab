@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LoginView, LogoutView
 from .models import Book
 from .models import Library
 
@@ -35,15 +34,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('books')
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
-
-# Custom Login View
-class CustomLoginView(LoginView):
-    template_name = 'relationship_app/login.html'
-
-# Custom Logout View  
-class CustomLogoutView(LogoutView):
-    template_name = 'relationship_app/logout.html'
