@@ -12,5 +12,5 @@ library = Library.objects.get(name=library_name)
 books_in_library = library.books.all()
 
 # Retrieve the librarian for a library (OneToOne relationship)
-library = Library.objects.get(name="Central Library")  
-librarian = library.librarian
+library = Library.objects.get(name="Central Library")
+librarian = Librarian.objects.get(library=library)
