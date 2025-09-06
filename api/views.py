@@ -1,7 +1,7 @@
 from rest_framework import generics
 from .serializers import BookSerializer
 from bookshelf.models import Book
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
