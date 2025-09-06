@@ -23,3 +23,9 @@ urlpatterns = [
     path('comment/<int:pk>/update/', CommentUpdateView.as_view(), name='comment-update'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]
+# Search
+path('search/', PostListView.as_view(), name='post-search'),
+
+# View posts by tag
+from .views import PostListView
+path('tags/<slug:tag_slug>/', PostListView.as_view(), name='posts-by-tag'),
