@@ -1,6 +1,7 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from django.contrib.auth.models import User
 from bookshelf.models import Book
 
 class BookAPITests(APITestCase):
@@ -9,6 +10,9 @@ class BookAPITests(APITestCase):
         self.book1 = Book.objects.create(title="Book One", author="Author A", publication_year=2001)
         self.book2 = Book.objects.create(title="Book Two", author="Author B", publication_year=2002)
         self.book3 = Book.objects.create(title="Another Book", author="Author A", publication_year=2003)
+
+        # Create a test user for authentication
+        self.user = User.objects.create_user(username="testuser", password="testpass")
 
     def test_list_books(self):
         url = reverse('book-list')
@@ -22,7 +26,11 @@ class BookAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['title'], self.book1.title)
 
-    def test_create_book(self):
+    def test_create_book_authenticated(self):
+        # Login before creating
+        login = self.client.login(username="testuser", password="testpass")
+        self.assertTrue(login)
+
         url = reverse('book-create')
         data = {"title": "New Book", "author": "New Author", "publication_year": 2020}
         response = self.client.post(url, data, format='json')
