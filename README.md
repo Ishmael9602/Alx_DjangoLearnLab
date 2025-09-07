@@ -153,5 +153,4 @@ ALX\_DjangoLearnLab/
 
 
 
-Do you also want me to generate the **requirements.txt** so your GitHub repo is fully ready for anyone to clone and run?
 ```
