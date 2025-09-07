@@ -1,7 +1,3 @@
-Absolutely, Phikani — here’s your **regenerated README file**, tailored to your current API setup and book catalog. It’s clean, presentation-ready, and includes full endpoint URLs for easy copy-paste during your Loomy demo.
-
----
-
 # 📚 Library Management System API
 
 A production-ready REST API for managing library operations including user registration, book catalog management, secure checkouts, and real-time inventory tracking.
@@ -46,6 +42,7 @@ Library-Management-System-API/
 ## 📚 Sample Book Catalog
 
 ### 1. The Great Gatsby
+- **Book ID:** `74d1b890-20c6-47e8-945f-0e63718996ea`  
 - **Author:** F. Scott Fitzgerald  
 - **ISBN:** 9780743273565  
 - **Publisher:** Scribner  
@@ -56,6 +53,7 @@ Library-Management-System-API/
 - **Description:** A classic American novel about the Jazz Age
 
 ### 2. To Kill a Mockingbird
+- **Book ID:** `be6dcaee-31b3-4ffb-8475-340d14d4101e`  
 - **Author:** Harper Lee  
 - **ISBN:** 9780446310789  
 - **Genre:** Fiction  
@@ -70,30 +68,49 @@ Library-Management-System-API/
 **POST:**  
 `http://localhost:8000/api/auth/login/`
 
+---
+
 ### 📚 2. View Available Books
 **GET:**  
 `http://localhost:8000/api/books/available/`
 
+---
+
 ### 📦 3. Checkout a Book
+
+#### ✅ The Great Gatsby
 **POST:**  
-`http://localhost:8000/api/books/{book_id}/checkout/`  
-> Replace `{book_id}` with actual UUID
+`http://localhost:8000/api/books/74d1b890-20c6-47e8-945f-0e63718996ea/checkout/`
+
+#### ✅ To Kill a Mockingbird
+**POST:**  
+`http://localhost:8000/api/books/be6dcaee-31b3-4ffb-8475-340d14d4101e/checkout/`
+
+---
 
 ### 📅 4. View My Checkouts
 **GET:**  
 `http://localhost:8000/api/checkouts/my/`
 
+---
+
 ### 🔒 5. Create Book (Admin Only)
 **POST:**  
 `http://localhost:8000/api/books/`
+
+---
 
 ### 📊 6. View Admin Stats
 **GET:**  
 `http://localhost:8000/api/stats/`
 
+---
+
 ### 🔍 7. Search by Title
 **GET:**  
 `http://localhost:8000/api/books/search/?search=gatsby`
+
+---
 
 ### ✅ 8. Filter Available Only
 **GET:**  
@@ -121,7 +138,7 @@ Library-Management-System-API/
 2. Open Postman tabs:
    - Login
    - Available Books
-   - Checkout Book
+   - Checkout Book (use actual book IDs)
    - My Checkouts
    - Search Books
 
@@ -144,4 +161,4 @@ Library-Management-System-API/
 
 ---
 
-Let me know if you want a version with collapsible sections or Markdown formatting for GitHub. You’re ready to impress.
+
